@@ -26,6 +26,7 @@ struct MyRepresentable: UIViewControllerRepresentable{
 class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject {
 
     @Published var classificationLabel: String?
+    @Published var projectName: String?
     var backCam: AVCaptureDevice!
     var frontCam: AVCaptureDevice!
     var captureDevice: AVCaptureDevice!
@@ -114,6 +115,8 @@ class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         } else {
             return
         }
+        changeProject()
+        
         captureSession.addInput(input)
         captureSession.startRunning()
         setPreviewLayer()
@@ -185,6 +188,28 @@ class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
                 self.confidence = topClassifications[0].confidence
             }
         }
+    }
+    
+    // MARK: - Handler for changing project to load project metadata and inference.
+    func changeProject() {
+        DataProvider.shared.getProjectList(success: { responseProjectList in
+            if responseProjectList.isEmpty {
+                return
+            }
+            
+            // TO-DO: let user pick project
+            let firstProject = responseProjectList[0]
+
+            DataProvider.shared.getProjectData(for: firstProject, success: { [weak self] responseProjectData in
+                DispatchQueue.main.async {
+                    self?.projectName = responseProjectData.meta.name
+                }
+            }, fail: { error in
+                print(error)
+            })
+        }, fail: { error in
+            print(error)
+        })
     }
 }
 

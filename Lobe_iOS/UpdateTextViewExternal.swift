@@ -24,6 +24,24 @@ struct UpdateTextViewExternal: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center) {
+                HStack(alignment: .center) {
+                    ZStack (alignment: .leading) {
+                        Rectangle()
+                            .foregroundColor(Color(.gray))
+                            .opacity(0.5)
+                    
+                        Text(self.viewModel.projectName ?? "No project loaded.")
+                            .padding()
+                            .foregroundColor(.white)
+                            .font(.system(size: 28))
+                    }
+                }
+                .frame(width: geometry.size.width / 1.2,
+                       height: 65,
+                       alignment: .center
+                )
+                .cornerRadius(17.0)
+                .padding()
                 Spacer()
                 HStack(alignment: .center) {
                     ZStack (alignment: .leading) {
