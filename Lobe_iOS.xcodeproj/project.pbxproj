@@ -68,16 +68,13 @@
 		9B7B03E92475DBF300D34020 /* Lobe_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B589094025356BBC00854421 /* View */,
+				B589093F25356BB000854421 /* Controller */,
 				B53C73702533B954007A0231 /* Model */,
 				B53C736F2533B94C007A0231 /* DataProvider */,
 				9B7B03EA2475DBF300D34020 /* AppDelegate.swift */,
 				9B7B03EC2475DBF300D34020 /* SceneDelegate.swift */,
-				9B7B03EE2475DBF300D34020 /* ContentView.swift */,
-				76ED73F4248988AE003B4F6B /* UpdateTextViewExternal.swift */,
-				76ED73F2248987E3003B4F6B /* MyViewController.swift */,
-				76CDE1A3247F2E6D0096E882 /* ImagePicker.swift */,
 				9B7B03F02475DBF600D34020 /* Assets.xcassets */,
-				9B7B03F52475DBF600D34020 /* LaunchScreen.storyboard */,
 				76A9AF53247F138B002086F7 /* LobeModel.mlmodel */,
 				9B7B03F82475DBF600D34020 /* Info.plist */,
 				9B7B03F22475DBF600D34020 /* Preview Content */,
@@ -107,6 +104,25 @@
 				B53C73752533C150007A0231 /* Project.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B589093F25356BB000854421 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				76ED73F2248987E3003B4F6B /* MyViewController.swift */,
+				76CDE1A3247F2E6D0096E882 /* ImagePicker.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B589094025356BBC00854421 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B7B03EE2475DBF300D34020 /* ContentView.swift */,
+				76ED73F4248988AE003B4F6B /* UpdateTextViewExternal.swift */,
+				9B7B03F52475DBF600D34020 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

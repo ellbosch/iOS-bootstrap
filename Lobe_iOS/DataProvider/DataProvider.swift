@@ -44,7 +44,7 @@ class DataProvider {
     
     // MARK: - API to get specific project data.
     public func getProjectData(for projectId: String, success: ((Project) -> Void)? = nil, fail: ((DataProviderError) -> Void)? = nil) {
-        let urlString = "\(LOBE_ROOT_URL)\(API_PATH_PROJECT)/\(projectId)"
+        let urlString = "\(LOBE_ROOT_URL)\(API_PATH_PROJECT)/\(projectId)/document"
         guard let urlRequest = URL(string: urlString) else {
             fail?(DataProviderError.missingUrl)
             return
@@ -86,8 +86,9 @@ class DataProvider {
     private func parseJSON<T: Decodable>(for responseData: Data, responseType: T.Type) throws -> T {
         let decoder = JSONDecoder()
         do {
-            let projects = try decoder.decode(responseType, from: responseData)
-            return projects
+            print(String(decoding: responseData, as: UTF8.self))
+            let data = try decoder.decode(responseType, from: responseData)
+            return data
         } catch {
             print(error)
             throw DataProviderError.jsonDecodeError
