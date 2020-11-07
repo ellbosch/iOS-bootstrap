@@ -19,6 +19,9 @@
 		9B7B03F72475DBF600D34020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B7B03F52475DBF600D34020 /* LaunchScreen.storyboard */; };
 		B53C73722533BF01007A0231 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C73712533BF01007A0231 /* DataProvider.swift */; };
 		B53C73762533C150007A0231 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C73752533C150007A0231 /* Project.swift */; };
+		B58A180C254FC4BE00AD32C1 /* ProjectPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A180B254FC4BE00AD32C1 /* ProjectPickerViewController.swift */; };
+		B591E42125357F4400489A7B /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591E42025357F4400489A7B /* ProjectListView.swift */; };
+		B591E424253585B900489A7B /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591E423253585B900489A7B /* ProjectListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		9B7B03F82475DBF600D34020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B53C73712533BF01007A0231 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		B53C73752533C150007A0231 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		B58A180B254FC4BE00AD32C1 /* ProjectPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPickerViewController.swift; sourceTree = "<group>"; };
+		B591E42025357F4400489A7B /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		B591E423253585B900489A7B /* ProjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,8 @@
 			children = (
 				76ED73F2248987E3003B4F6B /* MyViewController.swift */,
 				76CDE1A3247F2E6D0096E882 /* ImagePicker.swift */,
+				B591E423253585B900489A7B /* ProjectListViewController.swift */,
+				B58A180B254FC4BE00AD32C1 /* ProjectPickerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -118,11 +126,28 @@
 		B589094025356BBC00854421 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9B7B03EE2475DBF300D34020 /* ContentView.swift */,
-				76ED73F4248988AE003B4F6B /* UpdateTextViewExternal.swift */,
+				B58A1805254FA8A600AD32C1 /* ProjectsListView */,
+				B58A1804254FA88D00AD32C1 /* CameraView */,
 				9B7B03F52475DBF600D34020 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B58A1804254FA88D00AD32C1 /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				9B7B03EE2475DBF300D34020 /* ContentView.swift */,
+				76ED73F4248988AE003B4F6B /* UpdateTextViewExternal.swift */,
+			);
+			path = CameraView;
+			sourceTree = "<group>";
+		};
+		B58A1805254FA8A600AD32C1 /* ProjectsListView */ = {
+			isa = PBXGroup;
+			children = (
+				B591E42025357F4400489A7B /* ProjectListView.swift */,
+			);
+			path = ProjectsListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +227,10 @@
 				76CDE1A4247F2E6D0096E882 /* ImagePicker.swift in Sources */,
 				9B7B03ED2475DBF300D34020 /* SceneDelegate.swift in Sources */,
 				76ED73F5248988AE003B4F6B /* UpdateTextViewExternal.swift in Sources */,
+				B591E42125357F4400489A7B /* ProjectListView.swift in Sources */,
 				76ED73F3248987E3003B4F6B /* MyViewController.swift in Sources */,
+				B58A180C254FC4BE00AD32C1 /* ProjectPickerViewController.swift in Sources */,
+				B591E424253585B900489A7B /* ProjectListViewController.swift in Sources */,
 				9B7B03EF2475DBF300D34020 /* ContentView.swift in Sources */,
 				B53C73762533C150007A0231 /* Project.swift in Sources */,
 			);

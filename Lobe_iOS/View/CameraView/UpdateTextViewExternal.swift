@@ -20,20 +20,27 @@ struct UpdateTextViewExternal: View {
     @ObservedObject var viewModel: MyViewController
     @State var showImagePicker: Bool = false
     @State private var image: UIImage?
+    @State var showProjectListView = false
     
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center) {
                 HStack(alignment: .center) {
-                    ZStack (alignment: .leading) {
-                        Rectangle()
-                            .foregroundColor(Color(.gray))
-                            .opacity(0.5)
-                    
-                        Text(self.viewModel.projectName ?? "No project loaded.")
-                            .padding()
-                            .foregroundColor(.white)
-                            .font(.system(size: 28))
+                    Button(action: {
+                        self.showProjectListView.toggle()
+                    }) {
+                        ZStack (alignment: .leading) {
+                            Rectangle()
+                                .foregroundColor(Color(.gray))
+                                .opacity(0.5)
+                            
+                            Text(self.viewModel.projectName ?? "No project loaded.")
+                                .padding()
+                                .foregroundColor(.white)
+                                .font(.system(size: 28))
+                        }
+                    }.sheet(isPresented: $showProjectListView) {
+                        ProjectListView()
                     }
                 }
                 .frame(width: geometry.size.width / 1.2,
