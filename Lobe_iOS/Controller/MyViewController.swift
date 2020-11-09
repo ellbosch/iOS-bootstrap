@@ -14,11 +14,14 @@ import Vision
 struct MyRepresentable: UIViewControllerRepresentable{
     
     @State var controller: MyViewController
+    @Binding var model: VNCoreMLModel?
+
     func makeUIViewController(context: Context) -> MyViewController {
         return self.controller
     }
     func updateUIViewController(_ uiViewController: MyViewController, context: Context) {
-        
+        guard let model = self.model else { return }
+        uiViewController.model = model
     }
 }
 
@@ -37,6 +40,7 @@ class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     var confidence: Float?
     var camImage: UIImage?
     var totalFrameCount = 0
+    var model: VNCoreMLModel?
 
     var tripleTapGesture = UITapGestureRecognizer()
     var doubleTapGesture = UITapGestureRecognizer()
@@ -96,6 +100,11 @@ class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
        }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set default model if not already set
+        if (self.model == nil) {
+            self.model = try? VNCoreMLModel(for: LobeModel().model)
+        }
         
         doubleTapGesture = UITapGestureRecognizer(target: self, action:#selector(self.handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
@@ -159,7 +168,7 @@ class MyViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
         /* Crop the captured image to be the size of the screen. */
         self.camImage = rotatedImage.crop(height: (previewLayer?.frame.height)!, width: (previewLayer?.frame.width)!)
         
-        guard let model = try? VNCoreMLModel(for: LobeModel().model) else { return }
+        guard let model = self.model else { return }
         let request = VNCoreMLRequest(model: model) { (finishReq, err) in
             self.processClassifications(for: finishReq, error: err)
         }

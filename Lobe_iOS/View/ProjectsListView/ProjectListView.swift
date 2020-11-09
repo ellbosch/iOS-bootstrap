@@ -7,9 +7,11 @@
 //
 
 import SwiftUI
+import Vision
 
 struct ProjectListView: View {
     @State private var isProjectPicker = false
+    @Binding var selectedModel: VNCoreMLModel?
     
     var body: some View {
         NavigationView {
@@ -22,15 +24,17 @@ struct ProjectListView: View {
                                             Text("Import")
                                         })
                                         .sheet(isPresented: $isProjectPicker) {
-                                            ProjectPicker()
+                                            ProjectPicker(selectedModel: $selectedModel)
                                         }
                 )
         }
     }
 }
-
-struct ProjectListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProjectListView()
-    }
-}
+//
+//struct ProjectListView_Previews: PreviewProvider {
+//    @Binding var selectedModel: VNCoreMLModel?
+//    
+//    static var previews: some View {
+//        ProjectListView(selectedModel: $selectedModel)
+//    }
+//}

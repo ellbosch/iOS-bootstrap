@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var image: UIImage?
     @State var scaling: CGSize = .init(width: 1, height: 1)
     @State private var offset = CGSize.zero
+    @State private var model: VNCoreMLModel?
     
     var body: some View {
         GeometryReader { geometry in
@@ -51,7 +52,7 @@ struct ContentView: View {
                         .opacity(1 / self.scaling.height < 1 ? 0.5: 1)
                 } else {
                     /* Background camera. */
-                    MyRepresentable(controller: self.controller)
+                    MyRepresentable(controller: self.controller, model: $model)
                         /* Gesture for swiping up the photo library. */
                         .gesture(
                             DragGesture()
@@ -86,7 +87,7 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                UpdateTextViewExternal(viewModel: self.controller)
+                UpdateTextViewExternal(viewModel: self.controller, model: $model)
                 HStack {
                     
                     /* Button for openning the photo library. */

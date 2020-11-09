@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import Vision
 
 struct VisualEffectView: UIViewRepresentable {
     var effect: UIVisualEffect?
@@ -18,9 +19,10 @@ struct VisualEffectView: UIViewRepresentable {
 /* View for displaying the green bar containing the prediction label. */
 struct UpdateTextViewExternal: View {
     @ObservedObject var viewModel: MyViewController
-    @State var showImagePicker: Bool = false
+    @State private var showImagePicker: Bool = false
     @State private var image: UIImage?
-    @State var showProjectListView = false
+    @State private var showProjectListView = false
+    @Binding var model: VNCoreMLModel?
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,7 +42,7 @@ struct UpdateTextViewExternal: View {
                                 .font(.system(size: 28))
                         }
                     }.sheet(isPresented: $showProjectListView) {
-                        ProjectListView()
+                        ProjectListView(selectedModel: $model)
                     }
                 }
                 .frame(width: geometry.size.width / 1.2,
@@ -79,19 +81,20 @@ struct UpdateTextViewExternal: View {
     }
 }
 
-struct UpdateTextViewExternal_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .center) {
-                Image("testing_image")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: geometry.size.width,
-                           height: geometry.size.height)
-                UpdateTextViewExternal(viewModel: MyViewController()).zIndex(0)
-            }.frame(width: geometry.size.width,
-                    height: geometry.size.height)
-        }
-    }
-}
+// TO-DO: fix previews to work with model binding
+//struct UpdateTextViewExternal_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GeometryReader { geometry in
+//            ZStack(alignment: .center) {
+//                Image("testing_image")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .edgesIgnoringSafeArea(.all)
+//                    .frame(width: geometry.size.width,
+//                           height: geometry.size.height)
+//                UpdateTextViewExternal(viewModel: MyViewController()).zIndex(0)
+//            }.frame(width: geometry.size.width,
+//                    height: geometry.size.height)
+//        }
+//    }
+//}
