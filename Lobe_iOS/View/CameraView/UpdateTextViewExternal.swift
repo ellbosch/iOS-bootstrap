@@ -21,7 +21,7 @@ struct UpdateTextViewExternal: View {
     @ObservedObject var viewModel: MyViewController
     @State private var showImagePicker: Bool = false
     @State private var image: UIImage?
-    @State private var showProjectListView = false
+    @State private var showProjectPicker = false
     @Binding var model: VNCoreMLModel?
     
     var body: some View {
@@ -29,7 +29,7 @@ struct UpdateTextViewExternal: View {
             VStack(alignment: .center) {
                 HStack(alignment: .center) {
                     Button(action: {
-                        self.showProjectListView.toggle()
+                        self.showProjectPicker.toggle()
                     }) {
                         ZStack (alignment: .leading) {
                             Rectangle()
@@ -41,8 +41,8 @@ struct UpdateTextViewExternal: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 28))
                         }
-                    }.sheet(isPresented: $showProjectListView) {
-                        ProjectListView(selectedModel: $model)
+                    }.sheet(isPresented: $showProjectPicker) {
+                        ProjectPicker(selectedModel: $model)
                     }
                 }
                 .frame(width: geometry.size.width / 1.2,
